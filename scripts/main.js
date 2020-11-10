@@ -30,3 +30,13 @@ addBookToLibrary(new Book("Crime and Punishment", "Fyodor Dostoevsky", 652, true
 addBookToLibrary(new Book("Cien Años de Soledad", "Gabriel Marquez", 652, true));
 
 displayLibrary();
+
+const btn = document.querySelector('#btn');
+const form = document.querySelector('#form1');
+
+// btn.addEventListener('click', form.classList.toggle('btn-secondary'));
+// btn.addEventListener("click", form.classList.toggle("d-none"));
+
+function displayForm() {
+  form.classList.toggle("d-none")
+}

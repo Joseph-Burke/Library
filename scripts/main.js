@@ -41,6 +41,12 @@ function displayLibrary() {
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("btn", "btn-primary");
     deleteButton.textContent = "Remove Book";
+    deleteButton.setAttribute("data-attribute", i)
+    deleteButton.addEventListener("click", function(event) {
+      let index = event.target.getAttribute("data-attribute");
+      removeBookFromLibrary(index);
+      displayLibrary();
+    });
 
     const readButton = document.createElement('button');
     readButton.classList.add('btn', 'btn-secondary');

@@ -40,3 +40,8 @@ const form = document.querySelector('#form1');
 function displayForm() {
   form.classList.toggle("d-none")
 }
+
+function submitForm() {
+  
+
+}

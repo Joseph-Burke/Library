@@ -23,7 +23,7 @@
         <input
           type="text"
           class="form-control"
-          id=""
+          id="input-title"
           placeholder="Enter title"
         />
       </div>
@@ -32,7 +32,7 @@
         <input
           type="number"
           class="form-control"
-          id=""
+          id="input-pages"
           placeholder="Number of Pages"
         />
       </div>
@@ -41,7 +41,7 @@
         <input
           type="text"
           class="form-control"
-          id=""
+          id="input-author"
           placeholder="Author name"
         />
       </div>
@@ -53,7 +53,7 @@
             class="form-check-input"
             type="radio"
             name="inlineRadioOptions"
-            id="inlineRadio1"
+            id="input-read-true"
             value="option1"
           />
           <label class="form-check-label" for="inlineRadio1">Yes</label>
@@ -63,13 +63,13 @@
             class="form-check-input"
             type="radio"
             name="inlineRadioOptions"
-            id="inlineRadio2"
+            id="input-read-false"
             value="option2"
           />
           <label class="form-check-label" for="inlineRadio2">No</label>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" onclick="submitForm()">Submit</button>
     </form>
 
     <script src="scripts/main.js" async defer></script>

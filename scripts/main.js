@@ -2,13 +2,11 @@ let myLibrary = [];
 
 const btn = document.querySelector('#btn');
 const form = document.querySelector('#form1');
-const section = document.querySelector(".book-list");
+const bookList = document.querySelector(".book-list");
 const inputTitle = document.getElementById('input-title')
 const inputAuthor = document.getElementById("input-author");
 const inputPages = document.getElementById("input-pages");
 const inputRead = document.getElementById("input-title");
-
-
 
 addBookToLibrary(new Book("Harry Potter", "J.K.Rowling", 652, true));
 addBookToLibrary(new Book("Catcher in the Rye", "J.D. Salinger", 652, true));
@@ -31,6 +29,8 @@ function removeBookFromLibrary(index) {
 }
 
 function displayLibrary() {
+  // Remove all children of bookList
+  bookList.innerHTML = ""
   for (let i = 0 ; i < myLibrary.length ; i++) {
     const bookCard = document.createElement("div")
     
@@ -41,7 +41,6 @@ function displayLibrary() {
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("btn", "btn-primary");
     deleteButton.textContent = "Remove Book";
-    // deleteButton.onclick = removeBookFromLibrary(i+1);
 
     const readButton = document.createElement('button');
     readButton.classList.add('btn', 'btn-secondary');
@@ -49,7 +48,7 @@ function displayLibrary() {
 
     bookCard.appendChild(deleteButton);
     bookCard.appendChild(readButton);
-    section.appendChild(bookCard)
+    bookList.appendChild(bookCard)
   }
 }
 
@@ -57,7 +56,12 @@ function submitForm() {
   addBookToLibrary(
     new Book(inputTitle.value, inputAuthor.value, inputPages.value, true)
   );
-    displayLibrary();
+  inputTitle.value = "";
+  inputAuthor.value = "";
+  inputPages.value = "";
+
+  displayForm();
+  displayLibrary();
 }
 
 function displayForm() {

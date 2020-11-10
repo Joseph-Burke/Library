@@ -33,9 +33,15 @@ function displayLibrary() {
   bookList.innerHTML = ""
   for (let i = 0 ; i < myLibrary.length ; i++) {
     const bookCard = document.createElement("div")
-    
     bookCard.classList.add("card", "card-body");
-    bookCard.textContent = myLibrary[i]["title"] + ", by " + myLibrary[i]["author"]
+
+    let title = document.createElement("h5");
+    title.classList.add("card-title");
+    title.textContent = `${myLibrary[i].title}, by ${myLibrary[i].author}`;
+
+    let text = document.createElement("p");
+    text.classList.add("card-text");
+    text.textContent = `This book has ${myLibrary[i].pages} pages. ${readStatus(myLibrary[i])}`;
 
     // Add JS to put a button in each card
     const deleteButton = document.createElement("button");
@@ -52,6 +58,9 @@ function displayLibrary() {
     readButton.classList.add('btn', 'btn-secondary');
     readButton.textContent = 'Read?';
 
+    
+    bookCard.appendChild(title);
+    bookCard.appendChild(text);
     bookCard.appendChild(deleteButton);
     bookCard.appendChild(readButton);
     bookList.appendChild(bookCard)
@@ -72,6 +81,14 @@ function submitForm() {
 
 function displayForm() {
   form.classList.toggle("d-none");
+}
+
+function readStatus(book) {
+  if (book.read) {
+    return "You have read this book."
+  } else {
+    return "You have not yet read this book."
+  }
 }
 
 Book.prototype.read = function() {

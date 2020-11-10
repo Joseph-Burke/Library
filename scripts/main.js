@@ -2,7 +2,13 @@ let myLibrary = [];
 
 const btn = document.querySelector('#btn');
 const form = document.querySelector('#form1');
-const section = document.querySelector(".book-list")
+const section = document.querySelector(".book-list");
+const inputTitle = document.getElementById('input-title')
+const inputAuthor = document.getElementById("input-author");
+const inputPages = document.getElementById("input-pages");
+const inputRead = document.getElementById("input-title");
+
+
 
 addBookToLibrary(new Book("Harry Potter", "J.K.Rowling", 652, true));
 addBookToLibrary(new Book("Catcher in the Rye", "J.D. Salinger", 652, true));
@@ -35,14 +41,31 @@ function displayLibrary() {
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("btn", "btn-primary");
     deleteButton.textContent = "Remove Book";
+    // deleteButton.onclick = removeBookFromLibrary(i+1);
+
+    const readButton = document.createElement('button');
+    readButton.classList.add('btn', 'btn-secondary');
+    readButton.textContent = 'Read?';
 
     bookCard.appendChild(deleteButton);
+    bookCard.appendChild(readButton);
     section.appendChild(bookCard)
   }
 }
 
-function displayForm() {
-  form.classList.toggle("d-none")
+function submitForm() {
+  addBookToLibrary(
+    new Book(inputTitle.value, inputAuthor.value, inputPages.value, true)
+  );
+    displayLibrary();
 }
+
+function displayForm() {
+  form.classList.toggle("d-none");
+}
+
+Book.prototype.read = function() {
+  this.read = !this.read;
+};
 
 displayLibrary();

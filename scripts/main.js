@@ -6,7 +6,7 @@ const bookList = document.querySelector(".book-list");
 const inputTitle = document.getElementById('input-title')
 const inputAuthor = document.getElementById("input-author");
 const inputPages = document.getElementById("input-pages");
-const inputRead = document.getElementById("input-title");
+const inputRead = document.getElementById("input-read");
 
 addBookToLibrary(new Book("Harry Potter", "J.K.Rowling", 652, true));
 addBookToLibrary(new Book("Catcher in the Rye", "J.D. Salinger", 652, true));
@@ -37,17 +37,17 @@ function displayLibrary() {
 
     let title = document.createElement("h5");
     title.classList.add("card-title");
-    title.textContent = `${myLibrary[i].title}, by ${myLibrary[i].author}`;
+    title.textContent = `"${myLibrary[i].title}" by ${myLibrary[i].author}`;
 
     let text = document.createElement("p");
     text.classList.add("card-text");
     text.textContent = `This book has ${myLibrary[i].pages} pages. ${readStatus(myLibrary[i])}`;
 
-    // Add JS to put a button in each card
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("btn", "btn-primary");
     deleteButton.textContent = "Remove Book";
-    deleteButton.setAttribute("data-attribute", i)
+    deleteButton.setAttribute("data-attribute", i);
+
     deleteButton.addEventListener("click", function(event) {
       let index = event.target.getAttribute("data-attribute");
       removeBookFromLibrary(index);
@@ -56,8 +56,15 @@ function displayLibrary() {
 
     const readButton = document.createElement('button');
     readButton.classList.add('btn', 'btn-secondary');
-    readButton.textContent = 'Read?';
+    readButton.textContent = 'Change Read Status';
+    readButton.setAttribute("data-attribute", i);
 
+    readButton.addEventListener("click", function(event) {
+      let index = event.target.getAttribute("data-attribute");
+      let book = myLibrary[index];
+      book.read = !book.read;
+      displayLibrary();
+    });
     
     bookCard.appendChild(title);
     bookCard.appendChild(text);
@@ -69,11 +76,12 @@ function displayLibrary() {
 
 function submitForm() {
   addBookToLibrary(
-    new Book(inputTitle.value, inputAuthor.value, inputPages.value, true)
+    new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.checked)
   );
   inputTitle.value = "";
   inputAuthor.value = "";
   inputPages.value = "";
+  inputRead.checked = false;
 
   displayForm();
   displayLibrary();
@@ -90,9 +98,5 @@ function readStatus(book) {
     return "You have not yet read this book."
   }
 }
-
-Book.prototype.read = function() {
-  this.read = !this.read;
-};
 
 displayLibrary();

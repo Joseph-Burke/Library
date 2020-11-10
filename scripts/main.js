@@ -8,10 +8,10 @@ const inputAuthor = document.getElementById("input-author");
 const inputPages = document.getElementById("input-pages");
 const inputRead = document.getElementById("input-read");
 
-addBookToLibrary(new Book("Harry Potter", "J.K.Rowling", 652, true));
-addBookToLibrary(new Book("Catcher in the Rye", "J.D. Salinger", 652, true));
-addBookToLibrary(new Book("Crime and Punishment", "Fyodor Dostoevsky", 652, true));
-addBookToLibrary(new Book("Cien Años de Soledad", "Gabriel Marquez", 652, true));
+addBookToLibrary(new Book("Harry Potter and the Chamber of Secrets", "J.K.Rowling", 533, true));
+addBookToLibrary(new Book("Catcher in the Rye", "J.D. Salinger", 297, true));
+addBookToLibrary(new Book("Crime and Punishment", "Fyodor Dostoevsky", 684, true));
+addBookToLibrary(new Book("Cien Años de Soledad", "Gabriel Marquez", 484, true));
 
 function Book(title, author, pages, read) {
   this.title = title

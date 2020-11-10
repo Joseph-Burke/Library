@@ -80,11 +80,14 @@ function displayForm() {
   form.classList.toggle('d-none');
 }
 
-btn.addEventListener('click', submitForm());
-
 function submitForm() {
   addBookToLibrary(
-    new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.checked),
+    new Book(
+      inputTitle.value,
+      inputAuthor.value,
+      inputPages.value,
+      inputRead.checked,
+    ),
   );
   inputTitle.value = '';
   inputAuthor.value = '';
@@ -94,6 +97,10 @@ function submitForm() {
   displayForm();
   displayLibrary();
 }
+
+btn.addEventListener('click', () => {
+  submitForm();
+});
 
 addBookToLibrary(
   new Book('Harry Potter and the Chamber of Secrets', 'J.K.Rowling', 533, true),

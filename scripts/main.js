@@ -8,12 +8,9 @@ const inputPages = document.getElementById('input-pages');
 const inputRead = document.getElementById('input-read');
 const btn = document.getElementById('submit-form');
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+const BookFactory = (title, author, pages, read) => ({
+  title, author, pages, read,
+});
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -31,8 +28,8 @@ function readStatus(book) {
 }
 
 function displayLibrary() {
-  // Remove all children of bookList
   bookList.innerHTML = '';
+
   for (let i = 0; i < myLibrary.length; i += 1) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('card', 'card-body');
@@ -49,7 +46,6 @@ function displayLibrary() {
     deleteButton.classList.add('btn', 'btn-primary');
     deleteButton.textContent = 'Remove Book';
     deleteButton.setAttribute('data-attribute', i);
-
     deleteButton.addEventListener('click', (event) => {
       const index = event.target.getAttribute('data-attribute');
       removeBookFromLibrary(index);
@@ -60,7 +56,6 @@ function displayLibrary() {
     readButton.classList.add('btn', 'btn-secondary');
     readButton.textContent = 'Change Read Status';
     readButton.setAttribute('data-attribute', i);
-
     readButton.addEventListener('click', (event) => {
       const index = event.target.getAttribute('data-attribute');
       const book = myLibrary[index];
@@ -72,6 +67,7 @@ function displayLibrary() {
     bookCard.appendChild(text);
     bookCard.appendChild(deleteButton);
     bookCard.appendChild(readButton);
+
     bookList.appendChild(bookCard);
   }
 }
@@ -82,7 +78,7 @@ function displayForm() {
 
 function submitForm() {
   addBookToLibrary(
-    new Book(
+    BookFactory(
       inputTitle.value,
       inputAuthor.value,
       inputPages.value,
@@ -102,15 +98,15 @@ btn.addEventListener('click', () => {
   submitForm();
 });
 
-addBookToLibrary(
-  new Book('Harry Potter and the Chamber of Secrets', 'J.K.Rowling', 533, true),
-);
-addBookToLibrary(new Book('Catcher in the Rye', 'J.D. Salinger', 297, true));
-addBookToLibrary(
-  new Book('Crime and Punishment', 'Fyodor Dostoevsky', 684, true),
-);
-addBookToLibrary(
-  new Book('Cien Años de Soledad', 'Gabriel Marquez', 484, true),
-);
+const seedBooks = [
+  BookFactory('Harry Potter and the Chamber of Secrets', 'J.K.Rowling', 533, true),
+  BookFactory('Catcher in the Rye', 'J.D. Salinger', 297, true),
+  BookFactory('Crime and Punishment', 'Fyodor Dostoevsky', 684, true),
+  BookFactory('Cien Años de Soledad', 'Gabriel Marquez', 484, true),
+];
+
+for (let i = 0; i < seedBooks.length; i += 1) {
+  addBookToLibrary(seedBooks[i]);
+}
 
 displayLibrary();

@@ -8,9 +8,9 @@ const inputPages = document.getElementById('input-pages');
 const inputRead = document.getElementById('input-read');
 const btn = document.getElementById('submit-form');
 
-const BookFactory = (title, author, pages, read) => {
-  return { title, author, pages, read };
-};
+const BookFactory = (title, author, pages, read) => ({
+  title, author, pages, read,
+});
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -82,8 +82,8 @@ function submitForm() {
       inputTitle.value,
       inputAuthor.value,
       inputPages.value,
-      inputRead.checked
-    )
+      inputRead.checked,
+    ),
   );
   inputTitle.value = '';
   inputAuthor.value = '';
@@ -98,15 +98,15 @@ btn.addEventListener('click', () => {
   submitForm();
 });
 
-seedBooks = [
+const seedBooks = [
   BookFactory('Harry Potter and the Chamber of Secrets', 'J.K.Rowling', 533, true),
   BookFactory('Catcher in the Rye', 'J.D. Salinger', 297, true),
   BookFactory('Crime and Punishment', 'Fyodor Dostoevsky', 684, true),
-  BookFactory('Cien Años de Soledad', 'Gabriel Marquez', 484, true)
-]
+  BookFactory('Cien Años de Soledad', 'Gabriel Marquez', 484, true),
+];
 
-for (let i = 0; i < seedBooks.length; i = i + 1) {
+for (let i = 0; i < seedBooks.length; i += 1) {
   addBookToLibrary(seedBooks[i]);
-};
+}
 
 displayLibrary();

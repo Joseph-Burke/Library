@@ -10,16 +10,12 @@ const btn = document.getElementById('submit-form');
 
 class Book {
   constructor(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages= pages
-    this.read = read
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
   }
 }
-
-const BookFactory = (title, author, pages, read) => ({
-  title, author, pages, read,
-});
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
